@@ -3,4 +3,28 @@ div.container{
     flex-direction: column;
     flex-wrap: wrap;
     align-items: flex-start;
+    margin: 20px;
+}
+
+body{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 100vh;
+}
+
+label, input{
+    display: block;
+}
+
+label{
+    width: 100%;
+    text-align: center;
+}
+
+input{
+    width: 3rem;
+    text-align: center;
 }

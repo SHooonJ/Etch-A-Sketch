@@ -9,12 +9,12 @@ let yDimension = yDimensionHtml.valueAsNumber = 16;
 let gridWidth = 30*xDimension;
 let gridHeight = 30*yDimension;
 
-container.setAttribute('style',`background-color: red; width: ${gridWidth}px; height: ${gridHeight}px;`);
+container.setAttribute('style',`width: ${gridWidth}px; height: ${gridHeight}px;`);
 
 let pixelWidth = gridWidth / xDimension;
 let pixelHeight = gridHeight /yDimension;
 
-function createGrid(){
+function createBlocks(){
     for(let i = 0; i < xDimension * yDimension; i++){
         const div = document.createElement('div');
         div.classList.add(i);
@@ -23,7 +23,7 @@ function createGrid(){
     }
 }
 
-function deleteGrid(){
+function deleteBlocks(){
     const blocks = Array.from(document.querySelectorAll('div.container div'));
     blocks.forEach(element => element.remove());
 }
@@ -32,7 +32,7 @@ function deleteGrid(){
 function adjustGrid(){
     xDimension = xDimensionHtml.valueAsNumber;
     yDimension = yDimensionHtml.valueAsNumber;
-    container.setAttribute('style',`background-color: red; width: ${30*xDimension}px; height: ${30*yDimension}px;`);
+    container.setAttribute('style',`width: ${30*xDimension}px; height: ${30*yDimension}px;`);
 }
 
 function drawing(element){
@@ -45,9 +45,22 @@ function drawing(element){
     element.stopPropagation();
 }
 
-    createGrid();
+function checkChange(){
+    return (xDimension !== xDimensionHtml.valueAsNumber || yDimension !== yDimensionHtml.valueAsNumber);
+}
+
+function program(element){
+    if(checkChange()){
+        deleteBlocks();
+        adjustGrid();
+        createBlocks();
+    }
+    drawing(element);
+}
+
+    createBlocks();
     const div = Array.from(document.querySelectorAll('div'));
-    div.forEach(element => element.addEventListener("mouseover", drawing));
+    div.forEach(element => element.addEventListener("mouseover", program));
 
 
 
