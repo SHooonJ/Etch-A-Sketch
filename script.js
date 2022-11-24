@@ -18,7 +18,7 @@ function createBlocks(){
     for(let i = 0; i < xDimension * yDimension; i++){
         const div = document.createElement('div');
         div.classList.add(i);
-        div.setAttribute('style',`outline: 2px black solid; background-color: blue; width: ${pixelWidth}px; height: ${pixelHeight}px;`);
+        div.setAttribute('style',`outline: 2px black solid; background-color: brown; width: ${pixelWidth}px; height: ${pixelHeight}px;`);
         container.appendChild(div);
     }
 }
@@ -36,11 +36,17 @@ function adjustGrid(){
 }
 
 function drawing(element){
-    if(element.target.style.backgroundColor === 'black'){
-        element.target.style.backgroundColor = 'pink';
+    // if(element.target.style.backgroundColor === 'black'){
+    //     element.target.style.backgroundColor = 'pink';
+    // }
+    // else{
+    //     element.target.style.backgroundColor = 'black';
+    // }
+    if(element.ctrlKey){
+        element.target.style.backgroundColor = 'brown';
     }
     else{
-        element.target.style.backgroundColor = 'black';
+        element.target.style.backgroundColor = 'green';
     }
     element.stopPropagation();
 }
