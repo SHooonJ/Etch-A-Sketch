@@ -1,6 +1,6 @@
 const container = document.querySelector('.container');
 
-
+//set defualt parameters
 const xDimensionHtml = document.getElementById('widthDimension');
 const yDimensionHtml = document.getElementById('heightDimension');
 let xDimension = xDimensionHtml.valueAsNumber = 16;
@@ -9,10 +9,10 @@ let yDimension = yDimensionHtml.valueAsNumber = 16;
 let gridWidth = 30*xDimension;
 let gridHeight = 30*yDimension;
 
-container.setAttribute('style',`width: ${gridWidth}px; height: ${gridHeight}px;`);
+let pixelWidth = 30;
+let pixelHeight = 30;
 
-let pixelWidth = gridWidth / xDimension;
-let pixelHeight = gridHeight /yDimension;
+container.setAttribute('style',`width: ${gridWidth}px; height: ${gridHeight}px;`);
 
 function createBlocks(){
     for(let i = 0; i < xDimension * yDimension; i++){
@@ -36,12 +36,6 @@ function adjustGrid(){
 }
 
 function drawing(element){
-    // if(element.target.style.backgroundColor === 'black'){
-    //     element.target.style.backgroundColor = 'pink';
-    // }
-    // else{
-    //     element.target.style.backgroundColor = 'black';
-    // }
     if(element.ctrlKey){
         element.target.style.backgroundColor = 'brown';
     }
@@ -52,21 +46,24 @@ function drawing(element){
 }
 
 function checkChange(){
-    return (xDimension !== xDimensionHtml.valueAsNumber || yDimension !== yDimensionHtml.valueAsNumber);
-}
-
-function program(element){
-    if(checkChange()){
+    
+    if(xDimension !== xDimensionHtml.valueAsNumber || yDimension !== yDimensionHtml.valueAsNumber){
         deleteBlocks();
         adjustGrid();
         createBlocks();
     }
+}
+
+function program(element){
     drawing(element);
 }
 
     createBlocks();
     const div = Array.from(document.querySelectorAll('div'));
     div.forEach(element => element.addEventListener("mouseover", program));
+
+    const input = Array.from(document.querySelectorAll('input'));
+    input.forEach(element => element.addEventListener("click", checkChange));
 
 
 
